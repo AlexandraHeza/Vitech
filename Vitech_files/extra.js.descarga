@@ -1,0 +1,20 @@
+var overlay = document.getElementById("overlay");
+var iframeContainer = document.getElementById("iframeContainer");
+var mostrarVideoButton = document.getElementById("mostrarVideo");
+var videoIframe = iframeContainer.querySelector("iframe");
+
+mostrarVideoButton.addEventListener("click", function () {
+    overlay.style.display = "block";
+    iframeContainer.style.display = "block";
+    videoIframe.src = "https://www.youtube.com/embed/OfKQKy9bIqo?si=pdlnRBKJaSds4-Ao";
+});
+document.getElementById("cerrarIframe").addEventListener("click", function () {
+    overlay.style.display = "none";
+    iframeContainer.style.display = "none";
+    videoIframe.src = "";
+});
+overlay.addEventListener("click", function () {
+    overlay.style.display = "none";
+    iframeContainer.style.display = "none";
+    videoIframe.src = "";
+});

@@ -1,0 +1,295 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c12;
+            color: #eef2ff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ----- FONDO CARRUSEL CON MOVIMIENTO (scroll cambia de slide) ----- */
+        .hero-carousel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /* Overlay oscuro profesional para legibilidad */
+        .hero-carousel::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, rgba(8, 12, 25, 0.82) 0%, rgba(2, 5, 15, 0.75) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Contenido principal relativo al fondo */
+        .content-wrapper {
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(0px);
+        }
+
+        /* Header/Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            flex-wrap: wrap;
+            background: rgba(5, 7, 15, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(66, 153, 225, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: none;
+            color: #94a3b8;
+            display: block;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #60a5fa;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 4px;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 5rem 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero-gradient {
+            background: linear-gradient(to right, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-badges {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            border-left: 2px solid #60a5fa;
+        }
+
+        /* Cards y servicios animados */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            text-align: center;
+            cursor: default;
+            animation: fadeUp 0.6s ease backwards;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #60a5fa;
+            background: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .service-card p {
+            color: #cbd5e1;
+            margin: 0.8rem 0;
+            line-height: 1.4;
+        }
+        .btn-outline {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.4rem;
+            border: 1px solid #60a5fa;
+            border-radius: 40px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #60a5fa;
+            color: #0f172a;
+        }
+
+        /* Sección valores / porque elegirnos */
+        .values-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .value-item {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            padding: 1.5rem;
+            border-radius: 2rem;
+            flex: 1 1 200px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .partner-logo {
+            background: rgba(255,255,255,0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            backdrop-filter: blur(4px);
+            letter-spacing: 1px;
+        }
+
+        /* Imagen en movimiento sutil dentro de las cards (hover o animacion leve) */
+        .moving-icon {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .service-card:hover .moving-icon {
+            transform: translateX(6px) scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #1e293b;
+            background: rgba(2, 6, 23, 0.8);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 780px) {
+            .navbar {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .nav-links a {
+                margin: 0 0.8rem;
+            }
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vitech Consulting - Asistente Virtual</title>
+    <!-- Fuentes y estilos base -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c14;
+            color: #eef2ff;
+            overflow-x: hidden;
+        }
+
+        /* ========== FONDO CARRUSEL ========== */
+        .hero-carousel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            filter: brightness(0.3) blur(2px);
+            transform: scale(1.05);
+        }
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #60a5fa;
+        }
+
+        /* ========== SECCIONES ========== */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-content {
+            width: 100%;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .badge {
+            background: rgba(96,165,250,0.15);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(96,165,250,0.3);
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(96,165,250,0.1);
+            border: 1px solid #60a5fa;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background: #60a5fa;
+            color: #0a0c14;
+        }
+        .moving-icon {
+            transition: transform 0.3s ease;
+        }
+        .btn-outline:hover .moving-icon {
+            transform: translateX(5px);
+        }
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: rgba(15,18,31,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid rgba(96,165,250,0.2);
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            margin-bottom: 0.8rem;
+        }
+        .service-card p {
+            color: #cbd5f0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .value-item {
+            background: rgba(15,18,31,0.5);
+            border-radius: 20px;
+            padding: 1.8rem;
+        }
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .partner-logo {
+            background: rgba(255,255,255,0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #94a3b8;
+        }
+
+        /* ========== ASISTENTE VIRTUAL VITECH ========== */
+        .vitech-chat-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .vitech-chat-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+        }
+        .vitech-chat-btn i {
+            font-size: 28px;
+            color: white;
+        }
+        .vitech-chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 380px;
+            max-width: calc(100vw - 50px);
+            height: 500px;
+            max-height: calc(100vh - 130px);
+            background: #0f121f;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: none;
+            flex-direction: column;
+            z-index: 9998;
+            border: 1px solid #2d3348;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .vitech-chat-header {
+            background: linear-gradient(135deg, #059669, #047857);
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+        }
+        .vitech-chat-header span {
+            font-size: 16px;
+        }
+        .vitech-chat-close {
+            cursor: pointer;
+            font-size: 20px;
+            opacity: 0.8;
+            transition: 0.2s;
+        }
+        .vitech-chat-close:hover {
+            opacity: 1;
+        }
+        .vitech-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #0a0c14;
+        }
+        .vitech-message-user {
+            background: #1e2a3a;
+            color: white;
+            align-self: flex-end;
+            padding: 10px 14px;
+            border-radius: 18px 18px 4px 18px;
+            max-width: 80%;
+            font-size: 13px;
+        }
+        .vitech-message-bot {
+            background: #1f2937;
+            color: #e5e7eb;
+            align-self: flex-start;
+            padding: 10px 14px;
+            border-radius: 18px 18px 18px 4px;
+            max-width: 80%;
+            font-size: 13px;
+            border: 1px solid #374151;
+        }
+        .vitech-chat-input-area {
+            display: flex;
+            padding: 12px;
+            background: #0f121f;
+            border-top: 1px solid #2d3348;
+            gap: 8px;
+        }
+        .vitech-chat-input-area input {
+            flex: 1;
+            background: #1a1e2c;
+            border: 1px solid #374151;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 25px;
+            font-size: 13px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .vitech-chat-input-area input:focus {
+            border-color: #10b981;
+        }
+        .vitech-chat-input-area button {
+            background: #10b981;
+            border: none;
+            color: white;
+            padding: 0 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .vitech-chat-input-area button:hover {
+            background: #059669;
+        }
+        .vitech-typing {
+            color: #9ca3af;
+            font-size: 12px;
+            padding: 5px 12px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- FONDO CARRUSEL con scroll dinámico -->
+<div class="hero-carousel" id="bgCarousel">
+    <div class="carousel-slides" id="carouselSlides"></div>
+</div>
+
+<div class="content-wrapper">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./Vitech_files/Logo-Vitech-bco-150.webp" alt="Vitech Consulting">
+        </div>
+        <div class="nav-links">
+            <a href="#inicio" class="active">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#servicios">Línea de Negocio</a>
+            <a href="#aliados">Aliados Estratégicos</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Tecnología en Conectividad,<br> <span class="hero-gradient">potenciamos el futuro digital</span></h1>
+            <div class="hero-badges">
+                <span class="badge"><i class="fas fa-microchip"></i> INNOVAR</span>
+                <span class="badge"><i class="fas fa-shield-alt"></i> TRANSFORMAR</span>
+                <span class="badge"><i class="fas fa-chart-line"></i> LIDERAR</span>
+                <span class="badge">¡El futuro digital es ahora!</span>
+            </div>
+            <p style="max-width: 700px; margin: 1rem auto; font-size: 1.2rem; color: #cbd5f0;">55-6364-0266</p>
+            <div style="margin-top: 2rem;">
+                <a href="#servicios" class="btn-outline" style="background: #60a5fa20; border:1px solid #60a5fa;">SOLUCIONES TECNOLÓGICAS <i class="fas fa-arrow-right moving-icon"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" style="padding-top: 2rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;">
+            <div style="flex:1; min-width: 240px;">
+                <h2 style="font-size: 2rem; border-left: 4px solid #60a5fa; padding-left: 1rem;">Transformación Digital a tu Alcance</h2>
+                <p style="margin-top: 1rem; font-size: 1.1rem;">En la era de la transformación digital, las soluciones empresariales modernas son la clave para mantenerse a la vanguardia y prosperar en la industria. En VITECH & CONSULTING, ofrecemos:</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Un enfoque estratégico para integrar la tecnología</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Transformar tu negocio</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Diferenciación de la competencia</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Creación de valor en cada solución</span>
+                </div>
+            </div>
+            <div style="flex:1; text-align: center;">
+                <div style="background: rgba(96,165,250,0.1); border-radius: 3rem; padding: 1rem;">
+                    <i class="fas fa-chalkboard-user" style="font-size: 4rem; color:#60a5fa"></i>
+                    <h3 style="margin-top: 0.5rem;">Transformación Continua</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2 class="section-title">Servicios Tecnológicos <i class="fas fa-cogs moving-icon"></i></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-cloud-upload-alt moving-icon"></i></div>
+                <h3>Cloud & DevOps</h3>
+                <p>Arquitectura en la nube, migración y automatización CI/CD. Escalabilidad sin límites.</p>
+                <p><strong>Infraestructura como código, optimización de costos.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-brain moving-icon"></i></div>
+                <h3>Telecomunicaciones</h3>
+                <p>Diseña, implementa y gestiona sistemas para transmitir voz, datos y video a distancia.</p>
+                <p><strong>Infraestructura de comunicación avanzada.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-shield-hog moving-icon"></i></div>
+                <h3>Ciberseguridad 360</h3>
+                <p>Auditoría, gestión de vulnerabilidades, cumplimiento normativo y protección de activos.</p>
+                <p><strong>Seguridad proactiva para tu empresa.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-sharp fa-solid fa-chart-diagram"></i></div>
+                <h3>Conectividad y Comunicaciones Unificadas</h3>
+                <p>Integran telefonía IP, video, chat, presencia y correo en una sola plataforma.</p>
+                <p><strong>Voz y Telefonía IP sobre VoIP.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-sharp-duotone fa-solid fa-ethernet"></i></div>
+                <h3>Cableado Estructurado</h3>
+                <p>Instalaciones de entrada, sala de equipos, cableado troncal y área de trabajo.</p>
+                <p><strong>Base física para voz, datos y video.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-duotone fa-regular fa-cloud-arrow-down"></i></div>
+                <h3>Cloud Connect</h3>
+                <p>Conexiones privadas, seguras y de alto rendimiento entre infraestructura local y nube pública.</p>
+                <p><strong>Conectividad privada, nube híbrida.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="valores">
+        <h2 class="section-title">Valores agregados & <br> ¿Por qué elegirnos?</h2>
+        <div class="values-grid">
+            <div class="value-item"><i class="fas fa-rocket" style="font-size: 2rem; color:#60a5fa"></i><h3>Innovación Continua</h3><p>Adopción temprana de tecnologías emergentes.</p></div>
+            <div class="value-item"><i class="fas fa-headset" style="font-size: 2rem; color:#60a5fa"></i><h3>Soporte 24/7</h3><p>Asistencia técnica y consultoría dedicada.</p></div>
+            <div class="value-item"><i class="fas fa-chart-simple" style="font-size: 2rem; color:#60a5fa"></i><h3>ROI Medible</h3><p>Estrategias orientadas a resultados cuantificables.</p></div>
+            <div class="value-item"><i class="fas fa-globe" style="font-size: 2rem; color:#60a5fa"></i><h3>Alcance Global</h3><p>Soluciones adaptadas a Latinoamérica y más allá.</p></div>
+        </div>
+    </section>
+
+    <section id="aliados">
+        <h2 class="section-title">Nuestros aliados & partners</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem auto;">Ofrecemos soluciones integrales a nivel global, adaptadas a tus necesidades con tecnología de vanguardia.</p>
+        <div class="partner-logos">
+            <div class="partner-logo"><i class="fab fa-aws"></i> AWS Partner</div>
+            <div class="partner-logo"><i class="fab fa-google"></i> Google Cloud</div>
+            <div class="partner-logo"><i class="fas fa-database"></i> DataStax</div>
+            <div class="partner-logo"><i class="fas fa-shield"></i> Fortinet</div>
+            <div class="partner-logo"><i class="fab fa-microsoft"></i> Microsoft Solutions</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Vitech Consulting — Transformación digital con excelencia | <i class="fas fa-phone-alt"></i> +52 (55) 6364-0266</p>
+    </footer>
+</div>
+
+<!-- ========== ASISTENTE VIRTUAL VITECH ========== -->
+<div class="vitech-chat-btn" id="vitechChatBtn">
+    <i class="fas fa-comment-dots"></i>
+</div>
+
+<div class="vitech-chat-window" id="vitechChatWindow">
+    <div class="vitech-chat-header">
+        <span><i class="fas fa-headset"></i> Asistente Vitech</span>
+        <span class="vitech-chat-close" id="vitechChatClose">✕</span>
+    </div>
+    <div class="vitech-chat-messages" id="vitechChatMessages">
+        <div class="vitech-message-bot">
+            👋 ¡Hola! Soy el asistente de <strong>Vitech Consulting</strong>.<br>
+            ¿Necesitas ayuda con <strong>soporte técnico</strong> o <strong>ventas</strong>?
+        </div>
+    </div>
+    <div class="vitech-chat-input-area">
+        <input type="text" id="vitechChatInput" placeholder="Escribe tu mensaje...">
+        <button id="vitechSendBtn">Enviar</button>
+    </div>
+</div>
+
+<script>
+    // ========== CARRUSEL DE FONDO ==========
+    const bgImages = [
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2034&q=80"
+    ];
+    
+    const carouselContainer = document.getElementById('carouselSlides');
+    let currentIndex = 0;
+    let slides = [];
+    
+    function initCarousel() {
+        carouselContainer.innerHTML = '';
+        const shuffled = [...bgImages];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        const finalSlides = shuffled.slice(0, 6);
+        finalSlides.forEach((imgUrl, idx) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = 'carousel-slide';
+            if (idx === 0) slideDiv.classList.add('active');
+            slideDiv.style.backgroundImage = `url('${imgUrl}')`;
+            carouselContainer.appendChild(slideDiv);
+            slides.push(slideDiv);
+        });
+        if(slides.length === 0) {
+            const fallback = document.createElement('div');
+            fallback.className = 'carousel-slide active';
+            fallback.style.backgroundColor = '#0a0c1a';
+            carouselContainer.appendChild(fallback);
+            slides.push(fallback);
+        }
+        currentIndex = 0;
+    }
+    
+    function updateActiveSlide(newIndex) {
+        if (!slides.length) return;
+        slides.forEach(slide => slide.classList.remove('active'));
+        const safeIndex = (newIndex % slides.length + slides.length) % slides.length;
+        slides[safeIndex].classList.add('active');
+        currentIndex = safeIndex;
+    }
+    
+    function nextSlide() {
+        if (!slides.length) return;
+        updateActiveSlide((currentIndex + 1) % slides.length);
+    }
+    
+    function prevSlide() {
+        if (!slides.length) return;
+        updateActiveSlide((currentIndex - 1 + slides.length) % slides.length);
+    }
+    
+    let scrollTimeout = null;
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(() => {
+            const currentScroll = window.scrollY;
+            const direction = currentScroll > lastScrollY ? 'down' : 'up';
+            if (direction === 'down') nextSlide();
+            else if (direction === 'up') prevSlide();
+            lastScrollY = currentScroll;
+            scrollTimeout = null;
+        }, 80);
+    });
+    
+    initCarousel();
+    
+    // Navegación activa por scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 150;
+        sections.forEach(sec => {
+            const secTop = sec.offsetTop;
+            const secBottom = secTop + sec.offsetHeight;
+            if (scrollPos >= secTop && scrollPos < secBottom) {
+                current = sec.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) link.classList.add('active');
+        });
+        if (current === '' && window.scrollY < 100) navLinks[0].classList.add('active');
+    });
+    
+    // ========== ASISTENTE VIRTUAL ==========
+    (function() {
+        const chatBtn = document.getElementById('vitechChatBtn');
+        const chatWindow = document.getElementById('vitechChatWindow');
+        const chatClose = document.getElementById('vitechChatClose');
+        const chatMessages = document.getElementById('vitechChatMessages');
+        const chatInput = document.getElementById('vitechChatInput');
+        const sendBtn = document.getElementById('vitechSendBtn');
+    
+        chatBtn.addEventListener('click', () => {
+            chatWindow.style.display = 'flex';
+        });
+        chatClose.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+    
+        function addMessage(sender, text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isUser ? 'vitech-message-user' : 'vitech-message-bot';
+            msgDiv.innerHTML = isUser ? `🧑 ${text}` : `🤖 ${text}`;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'vitech-typing';
+            typingDiv.id = 'vitechTyping';
+            typingDiv.innerHTML = '✍️ Escribiendo...';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    
+        function removeTypingIndicator() {
+            const typing = document.getElementById('vitechTyping');
+            if (typing) typing.remove();
+        }
+    
+        function getBotResponse(userMsg) {
+            const msg = userMsg.toLowerCase().trim();
+    
+            // Soporte técnico
+            if (msg.includes('no prende') || msg.includes('no enciende') || msg.includes('pantalla negra'))
+                return '🔧 Revisa el cable de poder y prueba otro enchufe. Si es laptop, mantén encendido 30 segundos. ¿Necesitas asistencia a domicilio?';
+            if (msg.includes('lento') || msg.includes('congelado') || msg.includes('tarda'))
+                return '🐢 Puede ser falta de RAM o disco lleno. Ofrecemos mantenimiento desde $500 MXN. ¿Te interesa cotizar?';
+            if (msg.includes('virus') || msg.includes('malware'))
+                return '🛡️ Limpieza de virus: $350 MXN. Incluye diagnóstico y eliminación. ¿Agendamos cita?';
+            if (msg.includes('wifi') || msg.includes('internet'))
+                return '🌐 Reinicia módem y router. En Windows usa "solucionador de redes". Si persiste, revisamos tu tarjeta de red.';
+    
+            // Ventas
+            if (msg.includes('precio') || msg.includes('costo'))
+                return '💰 ¿Buscas laptop, PC de escritorio, monitor o mantenimiento? Dime qué producto te interesa.';
+            if (msg.includes('laptop'))
+                return '💻 Laptops desde $8,500 MXN (básica) hasta $25,000 MXN (gamer). ¿Qué uso le darás?';
+            if (msg.includes('pc') || msg.includes('escritorio') || msg.includes('torre'))
+                return '🖥️ PCs desde $6,000 MXN (oficina) hasta $35,000 MXN (gaming/edición). ¿Necesitas cotización?';
+            if (msg.includes('monitor'))
+                return '📺 Monitores: 22" $2,200 | 24" $2,800 | 27" $3,800 | 32" $4,500 MXN.';
+            if (msg.includes('mantenimiento'))
+                return '🧹 Preventivo: $500 (limpieza física + software). Correctivo desde $350.';
+    
+            // Contacto
+            if (msg.includes('contacto') || msg.includes('hablar con humano'))
+                return '📞 Tel: 55 6364-0266 | Email: contacto@vitech.com | Horario: 9am-7pm';
+            if (msg.includes('dirección'))
+                return '📍 Av. Tecnológico #123, CDMX. También hacemos visitas a domicilio.';
+    
+            // Saludos
+            if (msg.includes('hola') || msg.includes('buenas'))
+                return '¡Hola! ¿En qué puedo ayudarte hoy? (soporte técnico o ventas)';
+            if (msg.includes('gracias'))
+                return '¡De nada! Quedo atento a más dudas. 😊';
+    
+            return 'No entendí. ¿Podrías especificar si es sobre soporte técnico (fallas, virus) o ventas (precios, equipos)?';
+        }
+    
+        function sendMessage() {
+            const userText = chatInput.value.trim();
+            if (userText === '') return;
+    
+            addMessage('', userText, true);
+            chatInput.value = '';
+    
+            showTypingIndicator();
+            setTimeout(() => {
+                removeTypingIndicator();
+                const botResponse = getBotResponse(userText);
+                addMessage('', botResponse, false);
+            }, 600);
+        }
+    
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    
+        // Auto-apertura después de 3 segundos
+        setTimeout(() => {
+            if (chatWindow.style.display !== 'flex') {
+                chatWindow.style.display = 'flex';
+            }
+        }, 3000);
+    })();
+</script>
+</body>
+</html>

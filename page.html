@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vitech Consulting</title>
+    <!-- Fuentes y estilos base -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="stylesNew.css">
+
+</head>
+<body>
+
+<!-- FONDO CARRUSEL con scroll dinámico (cambia cada scroll) -->
+<div class="hero-carousel" id="bgCarousel">
+    <div class="carousel-slides" id="carouselSlides">
+        <!-- Las imágenes se insertarán dinámicamente con JS - fondo aleatorio pero temática tecnológica/consultoría -->
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./Vitech_files/Logo-Vitech-bco-150.webp" alt="Vitech Consulting">
+          
+        </div>
+        <div class="nav-links">
+            <a href="#inicio" class="active">Inicio</a>
+            <a href="#Nosotros">Nosotros</a>
+            <a href="#LíneadeNegocio">Línea de Negocio</a>
+            <a href="#aliados">Aliados Estratégicos</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Tecnología en Conectividad,<br> <span class="hero-gradient">potenciamos el futuro digital</span></h1>
+            <div class="hero-badges">
+                <span class="badge"><i class="fas fa-microchip"></i> INNOVAR</span>
+                <span class="badge"><i class="fas fa-shield-alt"></i> TRANSFORMAR</span>
+                <span class="badge"><i class="fas fa-chart-line"></i> LIDERAR</span>
+                <span class="badge">¡El futuro digital es ahora!</span>
+            </div>
+            <p style="max-width: 700px; margin: 1rem auto; font-size: 1.2rem; color: #cbd5f0;">55-6364-0266</p>
+            <div style="margin-top: 2rem;">
+                <a href="#servicios" class="btn-outline" style="background: #60a5fa20; border:1px solid #60a5fa;">SOLUCIONES TECNOLÓGICAS<i class="fas fa-arrow-right moving-icon"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección "Un poco de nosotros" estilo referencia -->
+    <section id="nosotros" style="padding-top: 2rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;">
+            <div style="flex:1; min-width: 240px;">
+                <h2 style="font-size: 2rem; border-left: 4px solid #60a5fa; padding-left: 1rem;">Transformación Digital a tu Alcance</h2>
+                <p style="margin-top: 1rem; font-size: 1.1rem;">En la era de la transformación digital, las soluciones empresariales modernas son la clave para mantenerse a la vanguardia y prosperar en la industria. En VITECH & CONSULTING, ofrecemos:</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Un enfoque estratégico para integrar la tecnología</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Transformar tu negocio</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Diferenciación de la competencia</span>
+                    <span><i class="fas fa-check-circle" style="color:#60a5fa"></i> Creación de valor en cada solución</span>
+                </div>
+            </div>
+            <div style="flex:1; text-align: center;">
+                <div style="background: rgba(96,165,250,0.1); border-radius: 3rem; padding: 1rem;">
+                    <i class="fas fa-chalkboard-user" style="font-size: 4rem; color:#60a5fa"></i>
+                    <h3 style="margin-top: 0.5rem;">Transformación Continua</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS (similar a la estructura SMS, RCS, Mailing, etc pero adaptado a consultoría tecnológica) -->
+    <section id="servicios">
+        <h2 class="section-title">Servicios Tecnológicos <i class="fas fa-cogs moving-icon"></i></h2>
+        <div class="services-grid">
+            <!-- card 1: Cloud Consulting -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-cloud-upload-alt moving-icon"></i></div>
+                <h3>Cloud & DevOps</h3>
+                <p>Arquitectura en la nube, migración y automatización CI/CD. Escalabilidad sin límites.</p>
+                <p><strong>Infraestructura como código, optimización de costos.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- card 2: Data & AI -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-brain moving-icon"></i></div>
+                <h3>Telecomunicaciones</h3>
+                <p>diseña, implementa y gestiona sistemas para transmitir voz, datos y video a distancia</p>
+                <p><strong>Los profesionales en este campo instalan, mantienen y aseguran la infraestructura de comunicación</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- card 3: Ciberseguridad -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fas fa-shield-hog moving-icon"></i></div>
+                <h3>Ciberseguridad 360</h3>
+                <p>Auditoría, gestión de vulnerabilidades, cumplimiento normativo y protección de activos.</p>
+                <p><strong>Seguridad proactiva para tu empresa.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- card 4: RCS / Comms avanzadas  (similar a RCS) -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-sharp fa-solid fa-chart-diagram"></i></div>
+                <h3>Conectividad y Comunicaciones Unificadas</h3>
+                <p>integran telefonía IP, video, chat, presencia y correo en una sola plataforma, optimizando la colaboración y productividad empresarial</p>
+                <p><strong>Voz y Telefonía IP: Llamadas de voz sobre IP (VoIP).</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- card 5: SMS Masivo / Mailing Inteligente -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-sharp-duotone fa-solid fa-ethernet"></i></div>
+                <h3>Cableado Estructurado</h3>
+                <p>CInstalaciones de entrada, Sala de equipos, Cableado troncal, Sala de telecomunicaciones, Cableado horizontal y Área de trabajo.</p>
+                <p><strong>es la base física que conecta voz, datos y video en empresas, ofreciendo flexibilidad y escalabilidad.</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- card 6: Geolocalización & Field force (Skylogic-like) -->
+            <div class="service-card">
+                <div class="card-icon"><i class="fa-duotone fa-regular fa-cloud-arrow-down"></i></div>
+                <h3>Cloud Connect</h3>
+                <p>solución de red que establece conexiones privadas, seguras y de alto rendimiento entre la infraestructura local (on-premise) y los proveedores de nube pública (CSP) como AWS, Google Cloud o Azure</p>
+                <p><strong>Conectividad Privada,Nube Híbrida/Multicloud, Escalabilidad</strong></p>
+                <a href="#" class="btn-outline">Ver más <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES AGREGADOS + ¿Por qué elegirnos? -->
+    <section id="valores">
+        <h2 class="section-title">Valores agregados & <br> ¿Por qué elegirnos?</h2>
+        <div class="values-grid">
+            <div class="value-item"><i class="fas fa-rocket" style="font-size: 2rem; color:#60a5fa"></i><h3>Innovación Continua</h3><p>Adopción temprana de tecnologías emergentes.</p></div>
+            <div class="value-item"><i class="fas fa-headset" style="font-size: 2rem; color:#60a5fa"></i><h3>Soporte 24/7</h3><p>Asistencia técnica y consultoría dedicada.</p></div>
+            <div class="value-item"><i class="fas fa-chart-simple" style="font-size: 2rem; color:#60a5fa"></i><h3>ROI Medible</h3><p>Estrategias orientadas a resultados cuantificables.</p></div>
+            <div class="value-item"><i class="fas fa-globe" style="font-size: 2rem; color:#60a5fa"></i><h3>Alcance Global</h3><p>Soluciones adaptadas a Latinoamérica y más allá.</p></div>
+        </div>
+    </section>
+
+    <!-- Porque Vitech -->
+    <section id="aliados">
+        <h2 class="section-title">Nuestros aliados & partners</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem auto;">Ofrecemos soluciones integrales a nivel global, adaptadas a tus necesidades con tecnología de vanguardia.</p>
+        <div class="partner-logos">
+            <div class="partner-logo"><i class="fab fa-aws"></i> AWS Partner</div>
+            <div class="partner-logo"><i class="fab fa-google"></i> Google Cloud</div>
+            <div class="partner-logo"><i class="fas fa-database"></i> DataStax</div>
+            <div class="partner-logo"><i class="fas fa-shield"></i> Fortinet</div>
+            <div class="partner-logo"><i class="fab fa-microsoft"></i> Microsoft Solutions</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Vitech Consulting — Transformación digital con excelencia | <i class="fas fa-phone-alt"></i> +52 (55) 6364-0266</p>
+     
+</div>
+
+<script>
+    // ---------- CARRUSEL DE FONDO CON CAMBIO AL SCROLL ----------
+    // Lista de imágenes aleatorias temáticas tecnológicas / consultoría (unsplash de alta calidad y licencia gratuita)
+    const bgImages = [
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",   // ciberseguridad / circuitos
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",   // satelite / tecnologia
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",   // microchip
+        "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",   // robotica/consultoria
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",   // data matrix digital
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",   // desarrollo
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2034&q=80"     // servidores
+    ];
+    
+    // Asegurar al menos 5 imágenes únicas (mezclamos para aleatoriedad)
+    // Pero mostraremos todas en orden cíclico; pero al hacer scroll se cambia la imagen activa.
+    // Creamos dinámicamente los slides dentro del carrusel.
+    const carouselContainer = document.getElementById('carouselSlides');
+    let currentIndex = 0;
+    let slides = [];
+    
+    function initCarousel() {
+        carouselContainer.innerHTML = '';
+        // Orden aleatorio de las imágenes pero mostramos todas como slides potenciales
+        // Para dar sensación de aleatorias pero con un set fijo.
+        const shuffled = [...bgImages];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        // Tomamos primeras 6 u 8 imágenes únicas
+        const finalSlides = shuffled.slice(0, 6);
+        finalSlides.forEach((imgUrl, idx) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = 'carousel-slide';
+            if (idx === 0) slideDiv.classList.add('active');
+            slideDiv.style.backgroundImage = `url('${imgUrl}')`;
+            carouselContainer.appendChild(slideDiv);
+            slides.push(slideDiv);
+        });
+        // Si por alguna razón no hay slides, colocar al menos un fondo oscuro
+        if(slides.length === 0) {
+            const fallback = document.createElement('div');
+            fallback.className = 'carousel-slide active';
+            fallback.style.backgroundColor = '#0a0c1a';
+            carouselContainer.appendChild(fallback);
+            slides.push(fallback);
+        }
+        currentIndex = 0;
+    }
+    
+    function updateActiveSlide(newIndex) {
+        if (!slides.length) return;
+        // quitar active de todos
+        slides.forEach(slide => slide.classList.remove('active'));
+        // Asegurar índice circular
+        const safeIndex = (newIndex % slides.length + slides.length) % slides.length;
+        slides[safeIndex].classList.add('active');
+        currentIndex = safeIndex;
+    }
+    
+    function nextSlide() {
+        if (!slides.length) return;
+        const nextIdx = (currentIndex + 1) % slides.length;
+        updateActiveSlide(nextIdx);
+    }
+    
+    function prevSlide() {
+        if (!slides.length) return;
+        const prevIdx = (currentIndex - 1 + slides.length) % slides.length;
+        updateActiveSlide(prevIdx);
+    }
+    
+    // Evento de scroll: cada vez que el usuario haga scroll (ruleta o trackpad) cambiamos imagen de fondo.
+    let scrollTimeout = null;
+    let lastScrollY = window.scrollY;
+    let scrollDirection = 0;
+    
+    window.addEventListener('scroll', () => {
+        // Para evitar cambios excesivamente rápidos, usamos throttle con requestAnimationFrame
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(() => {
+            const currentScroll = window.scrollY;
+            const direction = currentScroll > lastScrollY ? 'down' : 'up';
+            // Cambiamos slide cada scroll, ya sea hacia arriba o abajo (navegación visual)
+            if (direction === 'down') {
+                nextSlide();
+            } else if (direction === 'up') {
+                prevSlide();
+            }
+            lastScrollY = currentScroll;
+            scrollTimeout = null;
+        }, 80);
+    });
+    
+    // Inicialización del fondo carrusel
+    initCarousel();
+    
+    // Pequeña animación adicional: si se quiere un cambio suave al cargar imágenes random con temática de tecnología
+    // Además las imágenes tendrán movimiento implícito debido a transición.
+    // También para refrescar las imagenes en movimiento se añade efecto de parallax sutil? opcional.
+    
+    // Agregar efecto de movimiento sutil en las imágenes del fondo con el mouse? No necesario pero elegante
+    document.body.addEventListener('mousemove', (e) => {
+        // micro movimiento para dar dinamismo al fondo? pero podría interferir, dejamos estable.
+    });
+    
+    // Para que todas las imagenes se carguen correctamente y evitar fondo blanco si falla alguna
+    // Pero usamos unsplash confiables, no hay problema.
+    
+    // Resaltar link activo en navegación por scroll (simple)
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 150;
+        sections.forEach(sec => {
+            const secTop = sec.offsetTop;
+            const secBottom = secTop + sec.offsetHeight;
+            if (scrollPos >= secTop && scrollPos < secBottom) {
+                current = sec.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+        if (current === '') {
+            if (window.scrollY < 100) navLinks[0].classList.add('active');
+        }
+    });
+    
+    // opcionalmente para imágenes con movimiento dentro de cards: Ya se usó la clase moving-icon.
+    // también añadir pequeña animación de brillo a las cards en hover está en CSS
+    console.log('Fondo dinámico con scroll: cada scroll cambia imagen. Tecnología consultora');
+    
+    // Agregar un ícono de scroll para feedback visual? no necesario pero buena experiencia.
+    // también asegurar que el carrusel de fondo nunca tenga desborde.
+</script>
+<script src="script.js"></script>
+</body>
+</html>
